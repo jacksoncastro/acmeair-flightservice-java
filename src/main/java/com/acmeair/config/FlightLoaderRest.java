@@ -30,7 +30,7 @@ import javax.ws.rs.core.Response;
 public class FlightLoaderRest {
   
   @Inject
-  private FlightLoader loader;
+  FlightLoader loader;
 
   @GET
   @Path("/query")

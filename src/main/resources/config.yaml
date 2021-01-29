@@ -1,0 +1,18 @@
+kumuluzee:
+  name: acmeair-flightservice-java
+  env:
+    name: dev
+  server:
+    http:
+      port: 9080
+    context-path: /flight
+  opentracing:
+    jaeger:
+      service-name: jaeger-service
+      agent-host: jaeger
+      reporter:
+        log-spans: false
+      sampler: 
+        type: const 
+        param: 1
+

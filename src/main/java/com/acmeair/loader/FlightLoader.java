@@ -31,7 +31,9 @@ import java.util.logging.Logger;
 import javax.inject.Inject;
 
 import org.eclipse.microprofile.config.inject.ConfigProperty;
+import javax.enterprise.context.ApplicationScoped;
 
+@ApplicationScoped
 public class FlightLoader {
   
   @Inject
@@ -39,7 +41,7 @@ public class FlightLoader {
   
   @Inject 
   @ConfigProperty(name = "NUM_DAYS_TO_LOAD", defaultValue = "5") 
-  private Short numDaysToLoad;
+  Short numDaysToLoad;
 
   private static Logger logger = Logger.getLogger(FlightLoader.class.getName());
 

@@ -31,6 +31,7 @@ import javax.json.JsonReader;
 import javax.json.JsonReaderFactory;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.FormParam;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
@@ -43,7 +44,7 @@ import org.eclipse.microprofile.metrics.annotation.SimplyTimed;
 public class FlightServiceRest {
 
   @Inject
-  private FlightService flightService;
+  FlightService flightService;
  
   private static final JsonReaderFactory jsonReaderFactory = Json.createReaderFactory(null);
   private static final JsonBuilderFactory jsonObjectFactory  = Json.createBuilderFactory(null);
@@ -75,13 +76,12 @@ public class FlightServiceRest {
   /**
    * Get reward miles for flight segment.
    */
-  @POST
-  @Path("/getrewardmiles")
-  @Consumes({"application/x-www-form-urlencoded"})
+  @GET
+  @Path("/getrewardmiles/{flightSegment}")
   @Produces("application/json")
   @SimplyTimed(name = "com.acmeair.web.FlightServiceRest.getRewardsMiles", tags = "app=acmeair-flightservice-java")
   public MilesResponse getRewardMiles(
-      @FormParam("flightSegment") String segmentId
+      @PathParam("flightSegment") String segmentId
       ) {
     Long miles = flightService.getRewardMiles(segmentId); 
 
