@@ -76,12 +76,13 @@ public class FlightServiceRest {
   /**
    * Get reward miles for flight segment.
    */
-  @GET
-  @Path("/getrewardmiles/{flightSegment}")
+  @POST
+  @Path("/getrewardmiles")
+  @Consumes({"application/x-www-form-urlencoded"})
   @Produces("application/json")
   @SimplyTimed(name = "com.acmeair.web.FlightServiceRest.getRewardsMiles", tags = "app=acmeair-flightservice-java")
   public MilesResponse getRewardMiles(
-      @PathParam("flightSegment") String segmentId
+      @FormParam("flightSegment") String segmentId
       ) {
     Long miles = flightService.getRewardMiles(segmentId); 
 
